@@ -9,7 +9,7 @@ class PhotoCollage:
     def __init__(self, path_to_photos, width=1024, count_in_row=4):
         self._path = Path(path_to_photos)
         self._collage = self._make_collage(width, count_in_row)
-    
+
     def _list_photos(self):
         photos = [photo for photo in self._path.glob('*') if photo.is_file()]
         return sorted(photos)
@@ -39,6 +39,9 @@ class PhotoCollage:
             img.paste(tmp, (x, y))
 
         return img
+
+    def get(self):
+        return self._collage
 
     def show(self):
         self._collage.show()
