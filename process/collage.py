@@ -6,13 +6,16 @@ class PhotoCollage:
     _path = None
     _collage = None
 
-    def __init__(self, path_to_photos, width=1024, count_in_row=4):
+    _reverse = None
+
+    def __init__(self, path_to_photos, width=1024, count_in_row=4, reverse=False):
         self._path = Path(path_to_photos)
+        self._reverse = reverse
         self._collage = self._make_collage(width, count_in_row)
 
     def _list_photos(self):
         photos = [photo for photo in self._path.glob('*') if photo.is_file()]
-        return sorted(photos)
+        return sorted(photos, reverse=self._reverse)
 
     def _make_collage(self, width, count_in_row):
         photos = self._list_photos()
