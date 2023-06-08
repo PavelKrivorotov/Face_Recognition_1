@@ -174,13 +174,14 @@ class PhotoEncoding:
         self._initial_photos_encodigs.setdefault(photo_name, encodings)
 
         # Draw rectangles by photo:
-        img_rectangle = self._draw_rectangle(img, rectangle_coords)
+        for coord in rectangle_coords:
+            img = self._draw_rectangle(img, coord)
 
         # Resize image:
         # img_resize = self._resize_photo()
 
         # Save modif image:
-        cv2.imwrite(save_path.as_posix(), img_rectangle)
+        cv2.imwrite(save_path.as_posix(), img)
 
     def _write_face_encodings(self, file_path):
         doc = {}
