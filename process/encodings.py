@@ -9,13 +9,17 @@ import face_recognition
 class PhotoEncoding:
     _path = Path.cwd()
 
-    _initial_photos_dir = Path(_path, 'initial-photos')
-    _initial_photos_json = Path(_path, 'face-encodings.json')
-    _initial_photos_encodigs = {}
+    def __init__(self, path=None):
+        if path:
+            self._path = Path(path)
 
-    _modify_photos_dir = Path(_path, 'modify-photos')
+        self._initial_photos_dir = Path(self._path, 'initial-photos')
+        self._initial_photos_json = Path(self._path, 'face-encodings.json')
+        self._initial_photos_encodigs = {}
 
-    _check_photos_dir = Path(_path, 'check-photos')
+        self._modify_photos_dir = Path(self._path, 'modify-photos')
+
+        self._check_photos_dir = Path(self._path, 'check-photos')
 
     def _initial_photos_path(self):
         return self._initial_photos_dir
