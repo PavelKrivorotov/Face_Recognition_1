@@ -48,3 +48,8 @@ class PhotoCollage:
 
     def show(self):
         self._collage.show()
+
+    def save(self, filename):
+        photo_name = f'{filename}.jpg'
+        path = Path(self._path, photo_name)
+        self._collage.save(path, 'JPEG')
